@@ -44,7 +44,7 @@
 <body class="shower list">
 
 <header class="caption">
-  <h1>Micorservices &amp; Feign</h1>
+  <h1>Microservices &amp; Feign</h1>
   <p>Igor Laborie</p>
 </header>
 
@@ -111,15 +111,18 @@
   <ol>
     <li>
       Introduction to microservices
+      <ul>
+        <li class="code">Jooby micro-framework</li>
+      </ul>
     </li>
     <li>
-      Basic
+      Feign Basic
       <ul>
         <li class="code">CRUD operations, JSON</li>
       </ul>
     </li>
     <li>
-      Advanced
+      Feign Advanced
       <ul>
         <li class="code">Async with RxJava</li>
         <li class="code">Circuit Breaker with Hystrix</li>
@@ -132,8 +135,170 @@
   <h2>Introduction to microservices</h2>
 </section>
 
+<section class="slide" id="micro">
+  <h2>Microservices Definition</h2>
+  <p>Martin Fowler post on <a href="http://martinfowler.com/articles/microservices.html">Microservices</a></p>
+  <figure>
+    <blockquote>
+      <p><strong>Loosely coupled</strong> service oriented architecture with <strong>bounded contexts</strong></p>
+    </blockquote>
+  </figure>
+  <ul>
+    <li>Componentization via Services</li>
+    <li>Decentralized governance</li>
+    <li>Decentralized data management</li>
+  </ul>
+</section>
+
+<section class="slide center" id="mono-archi">
+  <!--<h2>Monolithic Architecture</h2>-->
+  <figure>
+    <img src="pictures/monolithic-architecture.png" alt="Monolithic Architecture">
+    <figcaption>from Building <a href="https://www.nginx.com/blog/introduction-to-microservices/">Building Monolithic Applications</a></figcaption>
+  </figure>
+  <style>
+    #mono-archi figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #mono-archi figure img {
+      max-height: 480px;
+    }
+    #mono-archi figure figcaption {
+      margin: -2em;
+      color: rgba(255, 255, 255, .5);
+      font-size: 1rem;
+    }
+
+    #mono-archi figure figcaption a {
+      color: rgba(255, 255, 255, .5);
+      text-decoration: underline;
+    }
+  </style>
+</section>
+
+<section class="slide center" id="micro-archi">
+  <!--<h2>Microservices Architecture</h2>-->
+  <figure>
+    <img src="pictures/microservices-architecture.png" alt="Microservices Architecture">
+    <figcaption>from Building <a href="https://www.nginx.com/blog/introduction-to-microservices/">Building Monolithic Applications</a></figcaption>
+  </figure>
+  <style>
+    #micro-archi figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #micro-archi figure img {
+      max-height: 480px;
+    }
+
+    #micro-archi figure figcaption {
+      margin: -2em;
+      color: rgba(255, 255, 255, .5);
+      font-size: 1rem;
+    }
+
+    #micro-archi figure figcaption a {
+      color: rgba(255, 255, 255, .5);
+      text-decoration: underline;
+    }
+  </style>
+</section>
+
+<section class="slide center" id="micro-now">
+  <h2>Microservices or Not ?</h2>
+  <figure>
+    <img src="pictures/mono-vs-micro.png" alt="Mono vs Micro">
+    <div>
+      <p>Needs, tradeoff, ...<br>Third way <a href="https://www.youtube.com/watch?v=kbKxmEeuvc4&t=1s">Modular Monoliths (Simon Brown)</a> ?</p>
+    </div>
+  </figure>
+  <style>
+    #micro-now figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</section>
+
+<section class="slide" id="micro-java">
+  <h2>Microservice in Java</h2>
+  <p>With JEE ?,
+    <a href="http://microprofile.io/">Microprofile</a>,
+    <a href="http://www.adam-bien.com/roller/abien/">Adam Bien Blog</a>
+  </p>
+  <p>With <a href="http://projects.spring.io/spring-boot/">SpringBoot</a>, <a href="http://www.dropwizard.io/1.0.5/docs/">Dropwizard</a></p>
+  <p>With a micro-frameworks: <a href="http://sparkjava.com/">Spark (Java)</a>,
+  <a href="http://jooby.org/">Jooby</a>,
+  <a href="http://www.pippo.ro/">Pippo</a>,
+  <a href="http://vertx.io/">Vert.x</a>,
+  <a href="http://www.ninjaframework.org/">Ninja</a>
+  </p>
+</section>
+
+<section class="slide center" id="quote1">
+  <figure>
+    <blockquote>
+      <p>Most Java applications require a persistent class representing felines.</p>
+    </blockquote>
+    <figcaption>
+      Hibernate Documentation
+      <a href="http://docs.jboss.org/hibernate/orm/3.3/reference/fr-FR/html/persistent-classes.html#persistent-classes-pojo">...</a>
+    </figcaption>
+  </figure>
+</section>
+
+<section class="slide center" id="quote2">
+  <figure>
+    <blockquote>
+      <p>Most Java applications require a <strong>microservice</strong> for felines.</p>
+    </blockquote>
+    <figcaption>Any buzzword addicts</figcaption>
+  </figure>
+</section>
+
+<section class="slide" id="swagger">
+  <h2><span class="fa fa-terminal"></span> <code>curl http://cats/swagger</code></h2>
+  <figure>
+    <img src="pictures/Swagger.png" alt="Swagger Documentation">
+  </figure>
+  <p class="note">
+    Run with: <code>docker run -p 8080:8080 ilaborie/cats-microservice</code>
+  </p>
+  <style>
+    #swagger figure img {
+      max-width: 100%;
+    }
+    #swagger .note {
+      font-size: .8em;
+    }
+  </style>
+</section>
+
+<section class="slide blue center" id="jooby">
+  <h2><span class="fa fa-code"></span> Demo</h2>
+  <h3>Microservice with <img src="pictures/logo_jooby-2x.png" alt="Jooby"></h3>
+  <p>
+    <span class="fa fa-github"></span>
+    <a href="https://github.com/ilaborie/cat-microservice">See code on github</a>
+  </p>
+  <style>
+    #jooby h3 {
+      display: flex;
+      align-items: center;
+    }
+
+    #jooby h3 img {
+      margin-left: 1rem;
+    }
+  </style>
+</section>
+
 <section class="slide blue center" id="basic">
-  <h2>Basic</h2>
+  <h2>Feign Basic</h2>
 </section>
 
 <section class="slide" id="feign">
@@ -182,47 +347,6 @@
     <span class="fa fa-github"></span>
     <a href="https://github.com/ilaborie/feign-live">See code on github</a>
   </p>
-</section>
-
-<section class="slide center" id="quote1">
-  <figure>
-    <blockquote>
-      <p>Most Java applications require a persistent class representing felines.</p>
-    </blockquote>
-    <figcaption>
-      Hibernate Documentation
-      <a href="http://docs.jboss.org/hibernate/orm/3.3/reference/fr-FR/html/persistent-classes.html#persistent-classes-pojo">...</a>
-    </figcaption>
-  </figure>
-</section>
-
-<section class="slide center" id="quote2">
-  <figure>
-    <blockquote>
-      <p>Most Java applications require a <strong>microservice</strong> for felines.</p>
-    </blockquote>
-    <figcaption>Any buzzword addicts</figcaption>
-  </figure>
-</section>
-
-<section class="slide" id="swagger">
-  <h2><span class="fa fa-terminal"></span> <code>curl http://cats/swagger</code></h2>
-  <figure>
-    <img src="pictures/Swagger.png" alt="Swagger Documentation">
-  </figure>
-  <p class="note">
-    Run with: <code>docker run -p 8080:8080 ilaborie/cats-microservice</code><br>
-    <span class="fa fa-github"></span>
-    <a href="https://github.com/ilaborie/cat-microservice">See code on github</a>
-  </p>
-  <style>
-    #swagger figure img {
-      max-width: 100%;
-    }
-    #swagger .note {
-      font-size: .8em;
-    }
-  </style>
 </section>
 
 <section class="slide blue center" id="live1">
@@ -391,7 +515,7 @@
 </section>
 
 <section class="slide blue center" id="advanced">
-  <h2>Advanced</h2>
+  <h2>Feign Advanced</h2>
 </section>
 
 <section class="slide" id="async">
@@ -528,7 +652,7 @@
 </section>
 
 <section class="slide blue center">
-  <h2><a href="http://bit.ly/bbl_aerien_feign">http://bit.ly/bbl_aerien_feign</a></h2>
+  <h2><a href="http://bit.ly/bbl-aerien-feign">http://bit.ly/bbl-aerien-feign</a></h2>
 </section>
 
 <div class="progress"></div>
